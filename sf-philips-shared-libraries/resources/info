@@ -1,0 +1,3 @@
+# Adding this file to make directory availabe in code repository
+
+A resources directory allows the libraryResource step to be used from an external library to load associated non-Groovy files

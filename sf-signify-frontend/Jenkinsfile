@@ -1,0 +1,22 @@
+@Library('sf-philips-shared-libraries@main') _
+
+// Calling the ciNpm script with configuration
+ciNpm {
+    npmInstall = true  // Run npm install
+    build = true       // Run npm build
+    unitTest = false    // Run npm test
+}
+
+ciDocker {
+    dockerBuild = true
+    imageName = 'sf-phillips-ecr'
+    tag = 'frontend-latest'
+    registryUrl = '860602188711.dkr.ecr.us-east-1.amazonaws.com'
+    environment = 'dev'
+    awsRegion = 'us-east-1'
+}
+
+
+
+
+

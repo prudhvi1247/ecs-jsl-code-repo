@@ -1,0 +1,29 @@
+@Library('sf-philips-shared-libraries@main') _
+
+ciMaven {
+    build = false
+    unitTest = false
+    sonar = false
+    buildCommand = 'mvn clean install -DskipTests -Dcheckstyle.skip'
+    testCommand = 'mvn test -Dcheckstyle.skip && mvn verify -Dcheckstyle.skip'
+    sonarCommand = 'mvn sonar:sonar -Dsonar.projectKey=projectKey -Dsonar.projectName=projectName'
+}
+
+ciDocker {
+    dockerBuild = false
+    imageName = 'sf-phillips-ecr'
+    tag = 'backend-latest'
+    registryUrl = '860602188711.dkr.ecr.us-east-1.amazonaws.com'
+    environment = 'dev'
+    awsRegion = 'us-east-1'
+}
+
+ciEcsDeploy {
+    deploy = true // or false to skip deployment
+    clusterName = 'sf-philips-dev'
+    serviceName = 'sf-phillips-backen-service'
+    taskDefinition = 'sf-phillips-backend-task:1'
+    containerName = 'backend'
+    image = "860602188711.dkr.ecr.us-east-1.amazonaws.com/sf-phillips-ecr-dev:backend-latest"
+    awsRegion = 'us-east-1'
+}

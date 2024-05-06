@@ -1,0 +1,16 @@
+@Library('sf-philips-shared-libraries@main') _
+
+pipeline {
+    agent any // This defines the execution environment
+
+    stages {
+        stage('NPM Build') {
+            steps {
+                script {
+                    // Call the shared library function with necessary parameters
+                    ciNpm(build: true)
+                }
+            }
+        }
+    }
+}
